@@ -11,6 +11,8 @@ namespace Labrasa.API.Infra.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.ApplyConfigurationsFromAssembly(typeof(LabrasaContext).Assembly);
         }
 
         public DbSet<Produto> Produtos { get; set; } 

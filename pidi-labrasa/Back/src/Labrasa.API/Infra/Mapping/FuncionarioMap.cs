@@ -12,13 +12,16 @@ namespace Labrasa.API.Infra.Mapping
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).HasColumnName("id").ValueGeneratedOnAdd();
-            builder.Property(x => x.Nome).HasColumnType("nvarchar(100)").IsRequired();
-            builder.Property(x => x.Departamento).HasColumnType("nvarchar(20)").IsRequired();
-            builder.Property(x => x.Cpf).HasColumnType("nvarchar(15)").IsRequired();
-            builder.Property(x => x.Sexo).HasColumnType("nvarchar(15)").IsRequired();
-            builder.Property(x => x.Telefone).HasColumnType("nvarchar(15)").IsRequired();
-            builder.Property(x => x.Endereco).HasColumnType("nvarchar(200)").IsRequired();
-            builder.Property(x => x.Email).HasColumnType("nvarchar(100)").IsRequired();
+            builder.Property(x => x.Nome).HasColumnType("nvarchar").IsRequired().HasMaxLength(100);
+            builder.Property(x => x.Departamento).HasColumnType("nvarchar").IsRequired().HasMaxLength(20);
+            builder.Property(x => x.Cpf).HasColumnType("nvarchar").IsRequired().HasMaxLength(15);
+            builder.Property(x => x.Sexo).HasColumnType("nvarchar").IsRequired().HasMaxLength(15);
+            builder.Property(x => x.Telefone).HasColumnType("nvarchar").IsRequired().HasMaxLength(15);
+            builder.Property(x => x.Endereco).HasColumnType("nvarchar").IsRequired().HasMaxLength(200);
+            builder.Property(x => x.Email).HasColumnType("nvarchar").IsRequired().HasMaxLength(100);
+            builder.Property(x => x.Senha).HasColumnType("nvarchar").IsRequired().HasMaxLength(100);
+
+           
         }
     }
 }

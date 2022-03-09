@@ -13,11 +13,23 @@ namespace Labrasa.API.Infra.Mapping
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).HasColumnName("id").ValueGeneratedOnAdd();
-            builder.Property(x => x.ValorPedido).HasColumnName("valor_pedido").HasColumnType("numeric(38,2)");
-           
-            builder.HasOne(x => x.ComandaPedido).WithMany(x => x.PedidosComanda).HasForeignKey(x => x.ComandaPedidoId);
-            builder.HasMany(x => x.Produtos);
+            builder.Property(x => x.ValorPedido).HasColumnName("valor_pedido").HasColumnType("money");
+            builder.Property(x => x.DataHoraPedido).HasColumnName("data_pedido").HasColumnType("date");
 
+            builder.HasMany(x => x.Produtos)
+                    .WithMany(x => x.Pedidos)
+                    .UsingEntity<ProdutoPedido>(
+                    x => x.HasOne(pp => pp.Produto).WithMany().HasForeignKey(x => x.ProdutoId),
+                    x => x.HasOne(pp => pp.Pedido).WithMany().HasForeignKey(x => x.PedidoId),
+                    x =>
+                    {
+                        x.ToTable("tb_produto_pedido");
+
+                        x.HasKey(x => new { x.ProdutoId, x.PedidoId });
+
+                        x.Property(x => x.ProdutoId).HasColumnName("produto_id").IsRequired();
+                        x.Property(x => x.PedidoId).HasColumnName("pedido_id").IsRequired();
+                    });
         }
     }
 }

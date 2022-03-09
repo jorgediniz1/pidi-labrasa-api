@@ -48,11 +48,11 @@ namespace Labrasa.API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(int id, Funcionario funcionario)
+        public async Task<IActionResult> Update(Funcionario funcionario)
         {
             try
             {
-                var func = await _context.PegarPeloId(id);
+                var func = await _context.PegarPeloId(funcionario.Id);
                 
                 if(func != null)
                 {

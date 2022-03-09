@@ -35,15 +35,18 @@ namespace Labrasa.API.Infra.Repository
         {
             try
             {
-                var func = await _context.Funcionarios.FirstOrDefaultAsync(x => x.Id == funcionario.Id);
-                _context.Update(funcionario);
+                var func = await _context.Funcionarios.FindAsync(funcionario.Id);
+                _context.Entry(func).CurrentValues.SetValues(funcionario);
+
+                _context.Update(func);
+  
                 await _context.SaveChangesAsync();
 
                 return func;
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception(ex.Message); 
             }
         }
 

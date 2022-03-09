@@ -18,7 +18,7 @@ namespace Labrasa.API.Infra.Mapping
             builder.Property(x => x.StatusComanda).HasColumnType("nvarchar(20)");
             
 
-            builder.HasOne(x => x.Mesa).WithMany(x => x.ComandaMesa).HasForeignKey(x => x.MesaId);
+            builder.HasOne(x => x.Mesa).WithMany(x => x.Comandas).HasForeignKey(x => x.MesaId);
 
         }
     }
