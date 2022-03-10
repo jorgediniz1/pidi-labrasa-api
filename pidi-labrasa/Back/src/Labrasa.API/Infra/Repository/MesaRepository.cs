@@ -54,9 +54,25 @@ namespace Labrasa.API.Infra.Repository
             }
         }
 
-        public Task<Mesa> Atualizar(Mesa mesa)
+        public async Task<Mesa> Atualizar(Mesa mesa)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var me = await _context.Mesas.FindAsync(mesa.Id);
+                _context.Entry(me).CurrentValues.SetValues(mesa);
+               
+                _context.Update(me);
+
+                await _context.SaveChangesAsync();
+
+                return mesa;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+          
+                    
         }
 
         public async Task<Mesa> Incluir(Mesa mesa)

@@ -82,17 +82,23 @@ namespace Labrasa.API.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(Mesa mesa)
+        public async Task<IActionResult> Update(Mesa mesa)
         {
-            // FALTA IMPLEMENTAR CORRETAMENTE.
             try
             {
-                return Ok(await _context.Atualizar(mesa)); 
+                var me = await _context.PegarPeloId(mesa.Id);
+
+                if(me != null)
+                {
+                    await _context.Atualizar(mesa);
+                    return Ok();
+                }              
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
+            return BadRequest();
         }
          
             

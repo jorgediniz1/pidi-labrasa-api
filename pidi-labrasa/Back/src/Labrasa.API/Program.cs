@@ -21,6 +21,8 @@ builder.Services.AddDbContext<LabrasaContext>(x => x.UseSqlServer(
 builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
 builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
 builder.Services.AddScoped<IMesaRepository, MesaRepository>();
+builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
+builder.Services.AddScoped<IComandaRepository, ComandaRepository>();
 
 
 

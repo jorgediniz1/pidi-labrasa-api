@@ -21,6 +21,26 @@ namespace Labrasa.API.Controllers
             return Ok(await _context.PegarTodos());
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            try
+            {
+                var prod = await _context.PegarPeloId(id);
+
+                if(prod == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(prod);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post(Produto produto)
         {
@@ -31,13 +51,38 @@ namespace Labrasa.API.Controllers
             return Ok( await _context.Incluir(produto));
         }
 
-        [HttpPut] //IMPLEMENTAR PUT
+        [HttpPut]
+        public async Task<IActionResult> Update(Produto produto)
+        {
+            try
+            {
+                var prod = await _context.PegarPeloId(produto.Id);
+                if (prod != null)
+                {
+                    await _context.Atualizar(produto);
+                    return Ok(prod);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return BadRequest();
+        }
 
 
        [HttpDelete]
        public async Task<IActionResult> Delete(int id)
         {
-            return Ok(await _context.Apagar(id));
+            try
+            {
+                return Ok(await _context.Apagar(id));
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+           
         }
     }
 }

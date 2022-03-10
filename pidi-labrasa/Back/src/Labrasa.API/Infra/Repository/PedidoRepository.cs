@@ -5,16 +5,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Labrasa.API.Infra.Repository
 {
-    public class ProdutoRepository : IProdutoRepository
+    public class PedidoRepository : IPedidoRepository
     {
-
         private readonly LabrasaContext _context;
 
-        public ProdutoRepository(LabrasaContext context)
+        public PedidoRepository(LabrasaContext context)
         {
             _context = context;
         }
-
         public async Task<bool> Apagar(int id)
         {
             try
@@ -25,16 +23,14 @@ namespace Labrasa.API.Infra.Repository
                 }
                 try
                 {
-                    var prod = await _context.Produtos.FirstOrDefaultAsync(x => x.Id == id);
-                    _context.Produtos.Remove(prod);
+                    var ped = await _context.Pedidos.FirstOrDefaultAsync(p => p.Id == id); 
+                    _context.Pedidos.Remove(ped);
                     await _context.SaveChangesAsync();
-
                     return true;
-
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    throw new Exception(ex.Message);
+                    return false;
                 }
             }
             catch (Exception ex)
@@ -43,46 +39,18 @@ namespace Labrasa.API.Infra.Repository
             }
         }
 
-        public async Task<Produto> Atualizar(Produto produto)
+        public async Task<Pedido> Atualizar(Pedido pedido)
         {
             try
             {
-                var prod = await _context.Produtos.FindAsync(produto.Id);
-                _context.Entry(prod).CurrentValues.SetValues(produto);
+                var ped = await _context.Pedidos.FindAsync(pedido.Id);
+                _context.Entry(ped).CurrentValues.SetValues(pedido);
 
-                _context.Update(prod);
+                _context.Update(ped);
 
                 await _context.SaveChangesAsync();
 
-                return prod;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public async Task<Produto> Incluir(Produto produto)
-        {
-            try
-            {
-                await _context.AddAsync(produto);
-                await _context.SaveChangesAsync();
-
-                return produto;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public async Task<Produto> PegarPeloId(int id)
-        {
-            try
-            {
-                var prod = await _context.Produtos.FirstOrDefaultAsync(x => x.Id == id);
-                return prod;
+                return ped;
             }
             catch(Exception ex)
             {
@@ -90,29 +58,57 @@ namespace Labrasa.API.Infra.Repository
             }
         }
 
-        public async Task<IEnumerable<Produto>> PegarTodos()
+        public async Task<Pedido> Incluir(Pedido pedido)
         {
             try
             {
-                var prodList = await _context.Produtos.ToListAsync();
+                await _context.AddAsync(pedido);
+                await _context.SaveChangesAsync();
+                return pedido;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
-                return prodList;
+        public async Task<Pedido> PegarPeloId(int id)
+        {
+            try
+            {
+               var ped = await _context.Pedidos.FirstOrDefaultAsync(p => p.Id == id);
+                return ped;
             }
             catch(Exception ex)
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public async Task<IEnumerable<Pedido>> PegarTodos()
+        {
+
+            try
+            {
+                var pedidoList = await _context.Pedidos.ToListAsync();
+                return pedidoList;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+           
         }
 
         private bool Exists(int id)
         {
             try
             {
-                var prod =  _context.Produtos.FirstOrDefaultAsync(x => x.Id == id);
-                return prod != null ? true : false;
-                    
+                var ped = _context.Funcionarios.FirstOrDefault(x => x.Id == id);
+                return ped != null ? true : false;
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
