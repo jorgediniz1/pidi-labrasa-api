@@ -1,33 +1,119 @@
 ﻿using Labrasa.API.Domain.Interfaces;
 using Labrasa.API.Domain.Models;
+using Labrasa.API.Infra.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Labrasa.API.Infra.Repository
 {
     public class ComandaRepository : IComandaRepository
     {
-        public Task<bool> Apagar(int id)
+        private readonly LabrasaContext _context;
+
+        public ComandaRepository(LabrasaContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<Comanda> Atualizar(Comanda comanda)
+        public async Task<IEnumerable<Comanda>> PegarTodos()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var listComanda = await _context.Comandas.ToListAsync();
+                return listComanda;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        public Task<Comanda> Incluir(Comanda comanda)
+        public async Task<bool> Apagar(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (!Exists(id))
+                {
+                    return false;
+                }
+                try
+                {
+                    var com = await _context.Comandas.FirstOrDefaultAsync(c => c.Id == id);
+                    _context.Comandas.Remove(com);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        public Task<Comanda> PegarPeloId(int id)
+        public async Task<Comanda> Atualizar(Comanda comanda)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var com = await _context.Comandas.FindAsync(comanda.Id);
+                _context.Entry(com).CurrentValues.SetValues(comanda);
+                _context.Update(com);
+
+                await _context.SaveChangesAsync();
+
+                return comanda;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        public Task<IEnumerable<Comanda>> PegarTodos()
+        public async Task<Comanda> Incluir(Comanda comanda)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await _context.Comandas.AddAsync(comanda);
+                await _context.SaveChangesAsync();
+                return comanda;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<Comanda> PegarPeloId(int id)
+        {
+            try
+            {
+                var com = await _context.Comandas.FirstOrDefaultAsync(c => c.Id == id);
+                return com;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+     
+
+        //Verifica se o objeto em questão existe
+        private bool Exists(int id)
+        {
+            try
+            {
+                var com = _context.Comandas.FirstOrDefault(c => c.Id == id);
+                return com != null ? true : false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

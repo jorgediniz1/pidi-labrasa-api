@@ -1,14 +1,18 @@
 ﻿using Labrasa.API.Domain.Interfaces;
 using Labrasa.API.Domain.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Labrasa.API.Controllers
 {
 
+
     [ApiController]
     [Route("api/[Controller]")]
     public class MesaController : Controller
     {
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signIn;
         private readonly IMesaRepository _context;
         public MesaController(IMesaRepository context)
         {
@@ -16,10 +20,18 @@ namespace Labrasa.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(string email, string senha)
         {
             try
             {
+               var user= await _userManager.FindByEmailAsync(email);
+
+                if(user == null)
+                {
+                    return StatusCode(401);
+                }
+
+               await _signIn.CheckPasswordSignInAsync(user, senha, false);
                 return Ok(await _context.PegarTodas());
             }
             catch (Exception ex)

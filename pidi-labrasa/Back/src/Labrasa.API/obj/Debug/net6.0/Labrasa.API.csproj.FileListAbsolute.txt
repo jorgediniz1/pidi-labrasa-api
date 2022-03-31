@@ -1,5 +1,6 @@
 C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\appsettings.Development.json
 C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\appsettings.json
+C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Labrasa.API.staticwebassets.runtime.json
 C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Labrasa.API.exe
 C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Labrasa.API.deps.json
 C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Labrasa.API.runtimeconfig.json
@@ -7,6 +8,10 @@ C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Labrasa.API.dl
 C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\ref\Labrasa.API.dll
 C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Labrasa.API.pdb
 C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Humanizer.dll
+C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.UI.dll
 C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -14,6 +19,9 @@ C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Microsoft.Enti
 C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
 C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Microsoft.Identity.Client.dll
 C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\PidiAngular\pidi-labrasa\Back\src\Labrasa.API\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll

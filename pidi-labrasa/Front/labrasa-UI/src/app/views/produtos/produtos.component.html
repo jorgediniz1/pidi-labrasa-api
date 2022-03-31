@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="p-5">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">x</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Preço de custo</th>
+          <th scope="col">Preço de venda</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let produto of produtos">
+          <th>{{ produto.id }}</th>
+          <td>{{ produto.nome }}</td>
+          <td>{{ produto.precoCusto | currency: "R$" }}</td>
+          <td>{{ produto.precoVenda | currency: "R$" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

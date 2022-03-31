@@ -9,7 +9,6 @@
         public int QuantidadeMinima { get; set; }
         public double PrecoCusto { get; set; }
         public double PrecoVenda { get; set; }
-
         public List<Pedido> Pedidos { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Labrasa.API.Domain.Models
 {
-    public class Comanda
+    public class Comanda 
     {
         public int Id { get; set; }
         public double ValorTotal { get; set; }

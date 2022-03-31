@@ -18,7 +18,7 @@ namespace Labrasa.API.Infra.Repository
         public async Task<Funcionario> Incluir(Funcionario funcionario)
         {
             try
-            {
+            {              
                 await _context.AddAsync(funcionario);
                 await _context.SaveChangesAsync();
 
